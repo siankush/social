@@ -1,0 +1,61 @@
+2023-01-17 09:52:49 warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2023-01-17 09:52:49 error: [Cake\Database\Exception\MissingConnectionException] Connection to Mysql could not be established: SQLSTATE[HY000] [1045] Access denied for user 'my_app'@'localhost' (using password: YES) in /var/www/html/social/vendor/cakephp/cakephp/src/Database/Driver.php on line 133
+Exception Attributes: array (
+  'driver' => 'Mysql',
+  'reason' => 'SQLSTATE[HY000] [1045] Access denied for user \'my_app\'@\'localhost\' (using password: YES)',
+)
+Stack Trace:
+- /var/www/html/social/vendor/cakephp/cakephp/src/Database/Driver/Mysql.php:164
+- /var/www/html/social/vendor/cakephp/cakephp/src/Database/Schema/SchemaDialect.php:51
+- /var/www/html/social/vendor/cakephp/cakephp/src/Database/Driver/Mysql.php:216
+- /var/www/html/social/vendor/cakephp/cakephp/src/Database/Schema/Collection.php:53
+- /var/www/html/social/vendor/cakephp/cakephp/src/Database/Connection.php:418
+- /var/www/html/social/vendor/cakephp/bake/src/Command/ModelCommand.php:87
+- /var/www/html/social/vendor/cakephp/bake/src/Command/AllCommand.php:115
+- /var/www/html/social/vendor/cakephp/cakephp/src/Console/BaseCommand.php:189
+- /var/www/html/social/vendor/cakephp/cakephp/src/Console/CommandRunner.php:334
+- /var/www/html/social/vendor/cakephp/cakephp/src/Console/CommandRunner.php:172
+- /var/www/html/social/bin/cake.php:12
+
+Caused by: [PDOException] SQLSTATE[HY000] [1045] Access denied for user 'my_app'@'localhost' (using password: YES) in /var/www/html/social/vendor/cakephp/cakephp/src/Database/Driver.php on line 125
+Stack Trace:
+- /var/www/html/social/vendor/cakephp/cakephp/src/Database/Driver.php:125
+- /var/www/html/social/vendor/cakephp/cakephp/src/Core/Retry/CommandRetry.php:70
+- /var/www/html/social/vendor/cakephp/cakephp/src/Database/Driver.php:131
+- /var/www/html/social/vendor/cakephp/cakephp/src/Database/Driver/Mysql.php:164
+- /var/www/html/social/vendor/cakephp/cakephp/src/Database/Schema/SchemaDialect.php:51
+- /var/www/html/social/vendor/cakephp/cakephp/src/Database/Driver/Mysql.php:216
+- /var/www/html/social/vendor/cakephp/cakephp/src/Database/Schema/Collection.php:53
+- /var/www/html/social/vendor/cakephp/cakephp/src/Database/Connection.php:418
+- /var/www/html/social/vendor/cakephp/bake/src/Command/ModelCommand.php:87
+- /var/www/html/social/vendor/cakephp/bake/src/Command/AllCommand.php:115
+- /var/www/html/social/vendor/cakephp/cakephp/src/Console/BaseCommand.php:189
+- /var/www/html/social/vendor/cakephp/cakephp/src/Console/CommandRunner.php:334
+- /var/www/html/social/vendor/cakephp/cakephp/src/Console/CommandRunner.php:172
+- /var/www/html/social/bin/cake.php:12
+
+2023-01-17 09:53:45 warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2023-01-17 09:53:51 warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2023-01-17 09:53:57 warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2023-01-17 09:54:16 warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2023-01-17 10:01:02 warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2023-01-17 10:01:28 warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2023-01-18 03:37:00 warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2023-01-18 05:02:52 warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2023-01-18 09:49:11 warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2023-01-18 10:35:50 warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2023-01-18 11:36:02 warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2023-01-18 12:26:51 warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2023-01-19 03:59:03 warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2023-01-19 07:41:41 warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2023-01-19 07:55:56 warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2023-01-19 09:29:06 warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2023-01-20 04:51:10 warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2023-01-20 06:00:49 warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2023-01-20 10:44:59 warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2023-01-23 03:59:48 warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2023-01-23 12:00:44 warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2023-01-23 12:01:37 warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2023-01-23 12:22:19 warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2023-01-24 07:33:44 warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2023-01-24 10:31:57 warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
