@@ -19,6 +19,7 @@ use Cake\Controller\Controller;
         <div class="users view content">
             <?= $this->Html->link(__('New Post'), ['action' => 'postadd', $user->id], ['class' => 'button float-right']) ?>
             <h3><?= h($user->name) ?></h3>
+            <td><?= $this->Html->image($user->image) ?></td>
             <table>
                 <tr>
                     <th><?= __('Name') ?></th>
@@ -41,6 +42,7 @@ use Cake\Controller\Controller;
                         <th><?= $this->Paginator->sort('title') ?></th>
                         <th><?= $this->Paginator->sort('body') ?></th>
                         <th><?= $this->Paginator->sort('created_at') ?></th>
+                        <th><?= $this->Paginator->sort('image') ?></th>
                         <th class="actions"><?= __('Actions') ?></th>
                     </tr>
                 </thead>
@@ -51,6 +53,7 @@ use Cake\Controller\Controller;
                             <td><?= h($post->title) ?></td>
                             <td><?= h($post->body) ?></td>
                             <td><?= h($post->created_at) ?></td>
+                            <td><?= $this->Html->image($post->imgfile,['width'=>'100px']) ?></td>
                             <td class="actions">
                                 <?= $this->Html->link(__('View'), ['action' => 'postview', $post->id, $user->id]) ?>
                                 <?= $this->Html->link(__('Edit'), ['action' => 'postedit', $post->id, $user->id]) ?>

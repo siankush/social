@@ -33,6 +33,7 @@ class Post extends Entity
         'title' => true,
         'body' => true,
         'created_at' => true,
+        'imgfile'=> true,
         'user' => true,
         'comment' => true,
     ];

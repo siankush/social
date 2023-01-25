@@ -110,27 +110,85 @@ class UsersController extends AppController
      */
     public function add()
     {
+        // $user = $this->Users->newEmptyEntity();
+        // if ($this->request->is('post')) {
+        //     $user = $this->Users->patchEntity($user, $this->request->getData());
+        //     if ($this->Users->save($user)) {
+        //         $this->Flash->success(__('The user has been saved.'));
+
+        //         return $this->redirect(['action' => 'index']);
+        //     }
+        //     $this->Flash->error(__('The user could not be saved. Please, try again.'));
+        // }
+        // $this->set(compact('user'));
+
+
         $user = $this->Users->newEmptyEntity();
         if ($this->request->is('post')) {
             $user = $this->Users->patchEntity($user, $this->request->getData());
+
+            $image=$this->request->getData('image_file');
+
+            $name = $image->getClientFilename();
+
+            $targetPath= WWW_ROOT.'img'.DS.$name;
+
+            if($name)
+
+            $image->moveTo($targetPath);
+
+            $user->image=$name;
+
+            echo $name;
             if ($this->Users->save($user)) {
-                $this->Flash->success(__('The user has been saved.'));
+                $this->Flash->success(__('The tableinfo has been saved.'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The user could not be saved. Please, try again.'));
+            $this->Flash->error(__('The Users could not be saved. Please, try again.'));
         }
         $this->set(compact('user'));
     }
 
     public function postadd($userid)
     {
+        // $post = $this->Post->newEmptyEntity();
+        // $post['userid'] = $userid;
+        // if ($this->request->is('post')) {
+        //     $data = $this->request->getData();
+        //     $data['users_id'] = $userid;
+        //     $post = $this->Post->patchEntity($post, $data);
+        //     if ($this->Post->save($post)) {
+        //         $this->Flash->success(__('The post has been saved.'));
+
+        //         return $this->redirect(['action' => 'view', $userid]);
+        //     }
+        //     $this->Flash->error(__('The post could not be saved. Please, try again.'));
+        // }
+        // $users = $this->Post->Users->find('list', ['limit' => 200])->all();
+        // $this->set(compact('post', 'users'));
+
+
+
         $post = $this->Post->newEmptyEntity();
-        $post['userid'] = $userid;
         if ($this->request->is('post')) {
-            $data = $this->request->getData();
-            $data['users_id'] = $userid;
-            $post = $this->Post->patchEntity($post, $data);
+
+            $post['users_id'] = $userid;
+          
+            $post = $this->Post->patchEntity($post, $this->request->getData());
+                 
+            $image=$this->request->getData('img_file');
+            
+            $name = $image->getClientFilename();
+            
+            $targetPath= WWW_ROOT.'img'.DS.$name;
+            
+            if($name)
+            
+            $image->moveTo($targetPath);
+            
+            $post->imgfile=$name;
+          
             if ($this->Post->save($post)) {
                 $this->Flash->success(__('The post has been saved.'));
 
@@ -138,8 +196,7 @@ class UsersController extends AppController
             }
             $this->Flash->error(__('The post could not be saved. Please, try again.'));
         }
-        $users = $this->Post->Users->find('list', ['limit' => 200])->all();
-        $this->set(compact('post', 'users'));
+        $this->set(compact('post'));
     }
 
     /**
@@ -269,7 +326,7 @@ class UsersController extends AppController
             $result = $this->Authentication->getIdentity();
             // echo '<pre>';print_r($result->user_type);die;
             // $value = $result->name;
-            // print_r($value); die;
+            // print_r($value); die
 
             if($result->user_type == 0){
 
@@ -347,6 +404,30 @@ class UsersController extends AppController
 
 public function adminpage(){
 
+}
+
+public function saveUserajax(){
+    
+$user = $this->Users->newEmptyEntity();
+
+
+if ($this->request->is('post')) {
+
+    $name = $this->request->getData('name');
+    $email = $this->request->getData('email');
+    $password = $this->request->getData('password');
+    $user_type = $this->request->getData('user_type');
+    $imagfile = $this->request->getData('image_file');
+
+    $user = $this->Users->patchEntity($user, $this->request->getData());
+            if ($this->Users->save($user)) {
+                $this->Flash->success(__('The user has been saved.'));
+
+                return $this->redirect(['action' => 'index']);
+            }
+            $this->Flash->error(__('The user could not be saved. Please, try again.'));
+        }
+        $this->set(compact('user'));
 }
 
     public function logout()

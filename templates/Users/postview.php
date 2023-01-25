@@ -32,6 +32,9 @@
                 <tr>
                     <th><?= __('Body') ?></th>
                     <td><?= h($post->body) ?></td>
+                </tr>  <tr>
+                    <th><?= __('image') ?></th>
+                    <td><?= $this->Html->image($post->imgfile,['width'=>'100px']) ?></td>
                 </tr>
                 <tr>
                     <th><?= __('Created At') ?></th>
