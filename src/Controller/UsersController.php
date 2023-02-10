@@ -37,10 +37,10 @@ class UsersController extends AppController
 
     public function beforeFilter(\Cake\Event\EventInterface $event)
     {
-        parent::beforeFilter($event);
-        // Configure the login action to not require authentication, preventing
-        // the infinite redirect loop issue
-        $this->Authentication->addUnauthenticatedActions(['login']);
+        // parent::beforeFilter($event);
+        // // Configure the login action to not require authentication, preventing
+        // // the infinite redirect loop issue
+        // $this->Authentication->addUnauthenticatedActions(['login']);
         $this->loadModel('Post');
         $this->loadModel('Comment');
         $this->loadComponent('Flash');
@@ -123,31 +123,31 @@ class UsersController extends AppController
         // $this->set(compact('user'));
 
 
-        $user = $this->Users->newEmptyEntity();
-        if ($this->request->is('post')) {
-            $user = $this->Users->patchEntity($user, $this->request->getData());
+        // $user = $this->Users->newEmptyEntity();
+        // if ($this->request->is('post')) {
+        //     $user = $this->Users->patchEntity($user, $this->request->getData());
 
-            $image=$this->request->getData('image_file');
+        //     $image=$this->request->getData('image_file');
 
-            $name = $image->getClientFilename();
+        //     $name = $image->getClientFilename();
 
-            $targetPath= WWW_ROOT.'img'.DS.$name;
+        //     $targetPath= WWW_ROOT.'img'.DS.$name;
 
-            if($name)
+        //     if($name)
 
-            $image->moveTo($targetPath);
+        //     $image->moveTo($targetPath);
 
-            $user->image=$name;
+        //     $user->image=$name;
 
-            echo $name;
-            if ($this->Users->save($user)) {
-                $this->Flash->success(__('The tableinfo has been saved.'));
+        //     echo $name;
+        //     if ($this->Users->save($user)) {
+        //         $this->Flash->success(__('The tableinfo has been saved.'));
 
-                return $this->redirect(['action' => 'index']);
-            }
-            $this->Flash->error(__('The Users could not be saved. Please, try again.'));
-        }
-        $this->set(compact('user'));
+        //         return $this->redirect(['action' => 'index']);
+        //     }
+        //     $this->Flash->error(__('The Users could not be saved. Please, try again.'));
+        // }
+        // $this->set(compact('user'));
     }
 
     public function postadd($userid)
@@ -406,29 +406,95 @@ public function adminpage(){
 
 }
 
-public function saveUserajax(){
-    
-$user = $this->Users->newEmptyEntity();
+
+public function getuser(){
 
 
-if ($this->request->is('post')) {
-
-    $name = $this->request->getData('name');
-    $email = $this->request->getData('email');
-    $password = $this->request->getData('password');
-    $user_type = $this->request->getData('user_type');
-    $imagfile = $this->request->getData('image_file');
-
-    $user = $this->Users->patchEntity($user, $this->request->getData());
-            if ($this->Users->save($user)) {
-                $this->Flash->success(__('The user has been saved.'));
-
-                return $this->redirect(['action' => 'index']);
-            }
-            $this->Flash->error(__('The user could not be saved. Please, try again.'));
+  $status=$this->request->getQuery('status');
+        //dd($status);
+        if($status == null){
+            $users=$this->Users->find('all');
+        }else{
+            $users=$this->Users->find('all')->where(['status'=>$status]);
         }
-        $this->set(compact('user'));
+        
+        $this->set(compact('users'));
+        if($this->request->is('ajax')){
+            // start code will work in case of json return from here
+            echo json_encode($users);
+        //    die;
+           // end code will work in case of json return from here
+
+            // start code will work in case of element rander from here
+        //    $this->autoRender = false;
+           
+        //    $this->layout = false;
+        //    $this->render('/element/flash/tablelist');
+         // end code will work in case of element rander from here
+        }
+
 }
+public function save(){
+
+
+    // $user = $this->Users->newEmptyEntity();
+    // if ($this->request->is('post')) {
+    //     $user = $this->Users->patchEntity($user, $this->request->getData());
+    //     if ($this->Users->save($user)) {
+    //         $this->Flash->success(__('The user has been saved.'));
+
+    //         return $this->redirect(['action' => 'index']);
+    //         // echo json_encode(array(
+    //         //             "status" => 1,
+    //         //             "message" => "User has been created"
+    //         //         )); 
+    //     }
+    //     $this->Flash->error(__('The user could not be saved. Please, try again.'));
+    //     // echo json_encode(array(
+    //     //         "status" => 0,
+    //     //         "message" => "User has not been created"
+    //     //     )); 
+    // }
+    // $this->set(compact('user'));
+
+    $user = $this->Users->newEmptyEntity();
+    if ($this->request->is("ajax")) {
+
+
+    $data = $this->request->getData();
+
+    $user = $this->Users->patchEntity($user, $data);
+    
+    $image=$this->request->getData('image_file');
+
+    $name = $image->getClientFilename();
+
+    $targetPath= WWW_ROOT.'img'.DS.$name;
+
+    if($name)
+
+    $image->moveTo($targetPath);
+
+    $user->image=$name;
+
+       if ($this->Users->save($user)) {
+          $this->Flash->success(__('The user has been saved.'));
+
+         return $this->redirect(['action' => 'index']);
+        // echo json_encode(array(
+        //     "status" => 1,
+        //     "message" => "User has been created"
+        // )); 
+       }
+       $this->Flash->error(__('The user could not be saved. Please, try again.'));
+    // echo json_encode(array(
+    //     "status" => 0,
+    //     "message" => "User has not been created"
+    // )); 
+    }
+        $this->set(compact('user'));
+     }
+
 
     public function logout()
     {
@@ -439,4 +505,8 @@ if ($this->request->is('post')) {
             return $this->redirect(['controller' => 'Users', 'action' => 'login']);
         }
     }
+    
 }
+
+
+

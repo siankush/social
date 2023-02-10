@@ -29,6 +29,10 @@ a:active  {
     transition:all 0.2s ease-out;
 }
 
+.error{
+    color: red;
+}
+
 .side-nav a,
 .top-nav-links a,
 th a,
